@@ -88,6 +88,7 @@ li {
     font-size: 0.875rem;
     border-radius: 9999px;
     margin-right: auto;
+    cursor: pointer;
 }
 
 .learn-more__button:hover {
@@ -260,9 +261,87 @@ nav {
     filter: brightness(85%); 
 }
 
+.btn__menu {
+    height: 1.5rem;
+    width: 1.5rem;
+    background-color: transparent;
+    color: rgb(36, 62, 99);
+    cursor: pointer;
+    font-size: 24px;
+    border: none;
+    display: none;
+    transition: color 300ms ease;
+}
+
+.btn__menu:hover {
+    color: rgb(100, 21, 255);
+}
+
+.menu__backdrop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(229, 231, 235);
+    border-radius: 8px;
+    width: 100%;
+    height: 40vh;
+    top: 0px;
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 300ms ease;
+}
+
+.menu--open .menu__backdrop {
+    visibility: visible;
+    opacity: 1;
+}
+
+.menu__links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu__list {
+    text-align: center;
+    margin: 16px 0;
+}
+
+.menu__link {
+    font-size: 18px;
+    color: rgb(34, 31, 68);
+    font-weight: 600;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: all 300ms ease;
+}
+
+.menu__link:hover {
+    color: rgb(100, 21, 255);
+    border-bottom-color: rgb(100, 21, 255);
+}
+
+.menu__link--primary {
+    background-color: rgb(100, 21, 255);
+    padding: 12px 32px;
+    border-radius: 9999px;
+    color: rgb(247, 250, 252) !important;
+}
+
+.btn__menu--close {
+    height: 1.5rem;
+    width: 1.5rem;
+    position: absolute;
+    right: 0px;
+    top: 12px;
+}
+
 /* 
 
-Landing Page 
+LANDING
 
 */
 
@@ -323,7 +402,7 @@ Landing Page
     align-items: center;
     justify-content: center;
     transition: filter 300ms ease;
-    cursor: pointer;
+    cursor: not-allowed;
     border: none;
     margin: 8px 8px 8px 0;
     padding: 16px 0;
@@ -583,9 +662,6 @@ VALUES
     width: 100%;
 }
 
-.learn-more__button {
-    cursor: pointer;
-}
 
 /* 
 
@@ -725,7 +801,6 @@ PRICING
     padding: 32px;
     display: flex;
     justify-content: center;
-
 }
 
 .price-plan__button{
@@ -736,10 +811,15 @@ PRICING
     letter-spacing: 0.05rem;
     width: 65%;
     text-transform: uppercase;
-    cursor: pointer;
+    cursor: not-allowed;
     --tw-text-opacity: 1;
     color: rgba(247,250,252,var(--tw-text-opacity));
     transition: all 300ms ease;
+}
+
+.price-plan__button:hover {
+    transform: translateY(-0.1rem) translateX(0.1rem); 
+
 }
 
 .price-plan__button:hover{
@@ -942,7 +1022,7 @@ BANNER
     display: flex;
     align-items: center;
     padding: 0 32px;
-    height: 35vh;
+    min-height: 35vh;
     max-width: 1024px;
     margin: 0 auto;
 }
@@ -1114,8 +1194,302 @@ RESPONSIVE
 
 */
 
-@media (min-width: 1024px) {
+@media (max-width: 1024px) {
+
+    .nav__link--list{
+        display: none;
+    }
+
+    .btn__menu {
+        display: block;
+    }
+
+    .responsive-heading {
+        font-size: 36px;
+    }
+
     .landing {
+        flex-direction: column;
+        max-width: 512px;
+    }
+
+    .landing__column {
+        width: 100%;
+    }
+
+    .landing__header {
+        font-size: 30px;
+    }
+
+    .landing__img {
+        width: 512px;
+        position: relative;
+        padding-top: 16px;
+    }
+        
+    .service {
+        width: 50%;
+    }
+
+    .values {
+        flex-direction: column;
+        max-width: 320px;
+    }
+
+    .values-section__img--wrapper {
         display: flex;
+        align-items: center;
+    }
+
+    .price-plans {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .price-plan {
+        margin-right: 0;
+        width: 100%;
+        max-width: 384px;
+    }
+
+    .banner {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .banner__buttons {
+        justify-content: center;
+        margin-top: 24px;
+    }
+
+    .sales-line {
+        text-align: center;
+        width: 100%;
+        max-width: 512px;
+    }
+}
+
+@media (max-width: 768px){
+    .service {
+        width: 100%;
+        max-width: 384px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .steps__description,
+    .values-section__description,
+    .quality-work__description {
+        width: 100%;
+    }
+
+    .quality-work, .values-section {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .quality-work__img--wrapper{
+        padding-bottom: 2rem;
+        width: 100%;
+    }
+
+    .section__heading, .section__title, .section__description {
+        text-align: center !important;
+
+    }
+    .section__description {
+        font-size: 14px;
+        margin: 0 auto;
+    }
+
+    .learn-more__button {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .steps {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .step {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+    }
+    .steps__description, .step__description {
+        margin-left: 0;
+    }
+
+    .step__description {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .values {
+        margin: 0 auto;
+    }
+
+    .value {
+        text-align: center;
+        margin-right: 0;
+    }
+
+    .value__title {
+        display: flex;
+        justify-content: center;
+    }
+
+    .quality-work__img--wrapper, 
+    .steps__img--wrapper,
+    .values-section__img--wrapper,
+    .testimonials__img--wrapper,
+    .testimonials__description
+    {
+        width: 28rem;
+    }
+
+    .testimonials {
+        flex-direction: column;
+    }
+
+    .testimonials__description {
+        padding-left: 0;
+    }
+
+    .rating-stars,
+    .rating-heading,
+    .rating-description {
+        text-align: center;
+    }
+
+    .banner__button {
+        padding: 16px 32px;
+        width: 10rem;
+    }
+
+    .link {
+        width: calc(100% / 3);
+        margin-top: 48px;
+    }
+    .links {
+        justify-content: start;
+    }
+
+    .footer__info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .copyright, 
+    .social__links {
+        margin-top: 32px;
+    }
+
+}
+
+@media (max-width:640px) {
+
+    .section__description {
+        width: 100%;
+    }
+
+    .responsive-heading {
+        font-size: 30px;
+    }
+
+    .responsive-heading--main {
+        font-size: 36px;
+    }
+
+    .quality-work__img--wrapper, 
+    .steps__img--wrapper,
+    .values-section__img--wrapper,
+    .testimonials__img--wrapper,
+    .testimonials__description,
+    .landing__img--wrapper
+    {
+        width: 100%;
+    }
+
+    .landing__img {
+        width: 100%;
+    }
+
+
+    .landing__form {
+        flex-direction: column;
+        border: none;
+        border-radius: 0;
+    }
+
+    .email-box {
+        padding: 16px 0 16px 32px;
+        border: 2px solid lightgray;
+        border-radius: 9999px;
+    }
+
+    .email-box:hover {
+        border: 2px solid darkgray;
+    }
+
+    .email-box:focus {
+        border: 2px solid #6415ff;
+    }
+
+    .landing__form:hover {
+        border: 0px solid darkgray;
+    }
+
+    .landing__form:focus-within {
+        border: 0px solid #6415ff;
+    }
+
+    .landing__form--button {
+        width: 100%;
+    }
+    .customer-arrows {
+        flex-direction: column;
+        align-items: center;
+    }
+    .customer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .customer__name-occupation {
+        padding: 0;
+        padding-top: 8px;
+    }
+    .customer__img--wrapper {
+        max-height: 64px;
+        max-width: 64px;
+    }
+
+    .customer__img {
+        width: 100%;
+    }
+
+    .arrow__container {
+        margin-top: 2rem;
+    }
+
+    .banner__buttons {
+        flex-direction: column;
+    }
+
+    .banner__button {
+        margin: 0;
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    .contact {
+        margin-top: 16px;
+    }
+
+    .sales-line {
+        font-size: 24px;
     }
 }
