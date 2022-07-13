@@ -62,9 +62,24 @@ async function postsByUser(userId) {
     console.log("results: ")
     console.log(result)
 
-    const posts = result.filter(elem => elem.userID === userId)
+    const posts = result.filter(elem => elem.userId === userId)
     console.log("posts:")
     console.log(posts)
 }
 
 postsByUser(4)
+
+console.log("                    ")
+console.log("____ QUESTION 6 ____")
+
+async function firstSixIncomplete() {
+    const promise = await fetch("https://jsonplaceholder.typicode.com/todos")
+
+    const result = await promise.json()
+
+    const incompletes = result.filter(elem => !elem.completed).splice(0,6)
+
+    console.log(incompletes)
+}
+
+firstSixIncomplete()
