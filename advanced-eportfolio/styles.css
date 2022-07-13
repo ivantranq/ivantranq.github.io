@@ -170,7 +170,10 @@ header {
 .dark-theme .mail-btn {
     background-color: white;
     color: #242424;
-    
+}
+
+.dark-theme #personal-logo {
+    filter: invert(1);
 }
 
 /* 
