@@ -218,6 +218,7 @@ RESULTS
 }
 
 .results__loading--spinner {
+    z-index: 99;
     display: none !important;
 }
 
@@ -287,5 +288,5 @@ RESULTS
 }
 
 .no-results {
-    padding-top: 24px;
+    padding: 12px 0;
 }
