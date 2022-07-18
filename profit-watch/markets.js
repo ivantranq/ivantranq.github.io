@@ -7,20 +7,14 @@ if (localStorage.getItem("searchQuery")){
     localStorage.clear()
 }
 
-
-
 async function renderSearchResults(searchQuery) {
-
     resultsMainEl.classList += ' results__loading'
-
     await timeout(1000)
     // const resultsBackend = await fetch(`https://api.stockdata.org/v1/entity/search?search=${searchQuery}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
     const resultsBackend = await fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=cbedd0e4`)
     // console.log(resultsBackend) // prints 1 response
-
     let results = await resultsBackend.json();
     console.log(results.Response);
-
     if (results.Response === "False") {
         resultsMainEl.classList.remove('results__loading')
         resultsHeadingEl.innerHTML = searchHeadingHTML(searchQuery);
@@ -31,32 +25,22 @@ async function renderSearchResults(searchQuery) {
                                                         </div>`
         return
     }
-    
     resultsMainEl.classList.remove('results__loading')
     // reults = results.data 
     results = results.Search;
-
     if (results.length > 6) {
         results = results.slice(0,6);
     }
-
     // console.log(results)
-
     const results1 = results.slice(0,3);
     // console.log(results1)
     const results2 = results.slice(3,6);
-
     quote1 = getQuotes(results1);
-    console.log(quote1)
+    // console.log(quote1)
     quote2 = getQuotes(results2);
-
     const allQuotes = results1.concat(results2)
-
-    console.log(allQuotes)
-
-
+    // console.log(allQuotes)
     const resultsMainHTML = allQuotes.map(elem => resultHTML(elem)).join("");
-
     resultsHeadingEl.innerHTML = searchHeadingHTML(searchQuery);
     resultsMainEl.innerHTML = resultsHeaderHTML() + resultsMainHTML;
 }
