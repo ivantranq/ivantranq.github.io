@@ -44,5 +44,5 @@ searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log(e)
     localStorage.setItem("searchQuery", e.target.children[0].value);
-    window.location.href = `${window.location.origin}/profit-watch/markets.html`
+    window.location.href = `./markets.html`
 })
