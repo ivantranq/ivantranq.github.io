@@ -1,5 +1,6 @@
 const resultsMainEl = document.querySelector(".results__main")
 const resultsHeadingEl = document.querySelector(".results__heading")
+
 if (localStorage.getItem("searchQuery")){
     const searchQuery = localStorage.getItem("searchQuery")
     renderSearchResults(searchQuery)
@@ -11,6 +12,7 @@ if (localStorage.getItem("searchQuery")){
 async function renderSearchResults(searchQuery) {
 
     resultsMainEl.classList += ' results__loading'
+
     await timeout(1000)
     // const resultsBackend = await fetch(`https://api.stockdata.org/v1/entity/search?search=${searchQuery}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
     const resultsBackend = await fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=cbedd0e4`)

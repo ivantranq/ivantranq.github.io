@@ -242,16 +242,24 @@ RESULTS
 .results__main {
     display: flex;
     flex-direction: column;
-    /* border-width: 1px; */
-    border-radius: 8px;
 }
 
 .result {
     display: flex;
     justify-content: space-around;
-    border-top-width: 1px;
-    border-radius: 8px;
-    margin-top: 4px;
+    border-width: 1px;
+    border-bottom-width: 0px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 4px 0;
+}
+
+.result:last-child {
+    border-bottom-width: 1px;
+}
+
+.result:nth-child(even) {
+    background: lightgrey;
 }
 
 .results__loading .result {
@@ -272,6 +280,10 @@ RESULTS
     display: flex;
     align-items: center;
     text-align: center;
+}
+
+.result__symbol {
+    text-transform: uppercase;
 }
 
 .no-results {
