@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0px solid lightgray;
+    font-family: 'Lato', sans-serif;
+}
+
+li {
+    list-style-type: none;
+}
+
+.row {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link,
+a:visited {
+    color: #646373;
+}
+
+
+/* 
+
+NAV
+
+*/
+
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.website-logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav__links {
+    display: flex;
+}
+
+.nav__link--list {
+    display: flex;
+    align-items: center;
+}
+
+.nav__link {
+    margin: 0 8px;
+    border-bottom: 4px solid transparent;
+    padding: 2px 8px;
+    transition: all 300ms ease;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.nav__link--primary {
+    color: white;
+    background-color: #00BFA6;
+    border-radius: 4px;
+    cursor: not-allowed;
+}
+
+.nav__link:hover {
+    border-bottom-color: #00BFA6;
+}
+
+.nav__link--primary:hover {
+    filter: brightness(0.8);
+}
+
+.website-logo__wrapper {
+    max-width: 60px;
+    padding-right: 8px;
+    border-right: 1px solid lightgray;
+}
+
+.website-logo__img {
+    width: 100%;
+}
+
+.website-logo__text {
+    padding-left: 8px;
+    transition: color 300ms ease;
+}
+
+.website-logo__text:hover {
+    color: #00BFA6;
+}
+
+.website-logo__text--heading {
+    font-size: 32px;
+}
+
+/* 
+
+LANDING
+
+*/
+
+.market-watch {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.faang {
+    width: calc(100% / 5);
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+.ticker {
+    text-align: center;
+    font-weight: 700;
+    color: #646373;
+    padding-bottom: 4px;
+}
+
+.percent-change {
+    text-align: center;
+    font-weight: 700;
+    border-radius: 4px;
+    
+    padding: 4px 0;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.percent-change--up {
+    background-color: #d6ffef;
+    color: #2ecc71;
+}
+
+.percent-change--down {
+    background-color: #FFDEDE;
+    color: #e74c3c;
+}
+
+.price {
+    text-align: center;
+    color: #646373;
+    padding-top: 4px;
+}
+
+/* 
+
+MARKET SEARCH
+
+*/
+
+.display__header {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 16px;
+    padding: 0 16px;
+}
+
+.display__description {
+    text-align: center;
+    font-size: 24px;
+    text-align: center;
+    padding: 0 16px;
+}
+
+.search-area {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.display__img--wrapper {
+    display: flex;
+    justify-content: center;
+}
+.display__img {
+    width: 60%;
+}
+
+.search-form {
+    width: 50%;
+    display: flex;
+}
+.search__input {
+    width: 90%;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 24px;
+    padding-left: 20px;
+}
+
+.search__input:focus {
+    border-color: #00BFA6;
+}
+
+.search__btn {
+    margin-left: 8px;
+    width: 20%;
+    background-color: #00BFA6;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+
+.search__btn:hover {
+    filter: brightness(0.8);
+}
+
+.fa-magnifying-glass-dollar {
+    font-size: 20px;
+    filter: invert(1);
+}

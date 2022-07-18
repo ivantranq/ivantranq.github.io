@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Search Markets</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./markets.css'>
+    <script src='./markets.js' defer></script>
+    <script src="https://kit.fontawesome.com/ccf078b125.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <nav>
+                    <div class="website-logo">
+                        <figure class="website-logo__wrapper">
+                            <img src="https://cdn.worldvectorlogo.com/logos/google-finance.svg" alt="" class="website-logo__img">
+                        </figure>
+                        <div class="website-logo__text">
+                            <h1 class="website-logo__text--heading">
+                                ProfitWatch
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="nav__links">
+                        <ul class="nav__link--list">
+                            <a href="./index.html">
+                                <li class="nav__link">Home</li>
+                            </a>
+                            <a href="#">
+                                <li class="nav__link">Markets</li>
+                            </a>
+                            <a href="">
+                                <li class="nav__link nav__link--primary">Contact Us</li>
+                            </a>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section id="search">
+        <div class="container">
+            <div class="row">
+                <div class="overlay">
+                </div>
+                <div class="search__section">
+                    <h1 class="search__heading">
+                        Search for a Company
+                    </h1>
+                    <form id="search-form" class="search-form">
+                        <input type="text" placeholder="Search company" class="search__input" required>
+                        <button class="search__btn" type="submit">
+                            <i class="fa-solid fa-magnifying-glass-dollar"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="results">
+        <div class="container">
+            <div class="row">
+                <div class="results__heading">
+                </div>
+                
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="results__main">
+                    <i class="fas fa-spinner results__loading--spinner"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

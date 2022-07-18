@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
+    <script src='index.js' defer></script>
+    <script src="https://kit.fontawesome.com/ccf078b125.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <nav>
+                    <div class="website-logo">
+                        <figure class="website-logo__wrapper">
+                            <img src="https://cdn.worldvectorlogo.com/logos/google-finance.svg" alt="" class="website-logo__img">
+                        </figure>
+                        <div class="website-logo__text">
+                            <h1 class="website-logo__text--heading">
+                                ProfitWatch
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="nav__links">
+                        <ul class="nav__link--list">
+                            <a href="#">
+                                <li class="nav__link">Home</li>
+                            </a>
+                            <a href="./markets.html">
+                                <li class="nav__link">Markets</li>
+                            </a>
+                            <a href="">
+                                <li class="nav__link nav__link--primary">Contact Us</li>
+                            </a>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section id="landing-page">
+        <div class="container">
+            <div class="row">
+                <div class="market-watch">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="market-search">
+        <div class="container">
+            <div class="row">
+                <h1 class="display__header">
+                    Australia's most accurate stock data.
+                </h1>
+                <p class="display__description">
+                    Get the most recent and accurate data on companies within the US Equity Market with ProfitWatch.
+                </p>
+                <div class="search-area">
+                    <form id="search-form" class="search-form" onsubmit="searchCompany(event)">
+                        <input type="text" placeholder="Search company" class="search__input" required>
+                        <button class="search__btn">
+                            <i class="fa-solid fa-magnifying-glass-dollar"></i>
+                        </button>
+                    </form>
+                </div>
+                <figure class="display__img--wrapper">
+                    <img src="./assets/undraw_investing_re_bov7.svg" alt="" class="display__img">
+                </figure>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
