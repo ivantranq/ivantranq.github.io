@@ -9,13 +9,14 @@ if (localStorage.getItem("searchQuery")){
 
 async function renderSearchResults(searchQuery) {
     resultsMainEl.classList += ' results__loading'
+    resultsMainEl.innerHTML = spinnerHTML();
     await timeout(1000)
-    // const resultsBackend = await fetch(`https://api.stockdata.org/v1/entity/search?search=${searchQuery}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
-    const resultsBackend = await fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=cbedd0e4`)
+    const resultsBackend = await fetch(`https://api.stockdata.org/v1/entity/search?search=${searchQuery}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
+    // const resultsBackend = await fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=cbedd0e4`)
     // console.log(resultsBackend) // prints 1 response
     let results = await resultsBackend.json();
-    console.log(results.Response);
-    if (results.Response === "False") {
+    console.log(results.data);
+    if (results.data.length === 0) {
         resultsMainEl.classList.remove('results__loading')
         resultsHeadingEl.innerHTML = searchHeadingHTML(searchQuery);
         resultsMainEl.innerHTML = resultsHeaderHTML() + `<div class="result">
@@ -27,7 +28,7 @@ async function renderSearchResults(searchQuery) {
     }
     resultsMainEl.classList.remove('results__loading')
     // reults = results.data 
-    results = results.Search;
+    results = results.data;
     if (results.length > 6) {
         results = results.slice(0,6);
     }
@@ -47,8 +48,8 @@ async function renderSearchResults(searchQuery) {
 
 async function getQuotes(results) {
     const unsolvedQuoteBackend = results.map(elem => 
-        // fetch(`https://api.stockdata.org/v1/data/quote?symbols=${elem.ticker}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
-        fetch(`https://www.omdbapi.com/?t=${elem.Title}&apikey=cbedd0e4`)
+        fetch(`https://api.stockdata.org/v1/data/quote?symbols=${elem.ticker}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
+        // fetch(`https://www.omdbapi.com/?t=${elem.Title}&apikey=cbedd0e4`)
     )
     // console.log(unsolvedQuoteBackend)
 
@@ -98,4 +99,8 @@ searchForm.addEventListener("submit", (e) => {
 
 function timeout(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+function spinnerHTML() {
+    return `<i class="fas fa-spinner results__loading--spinner"></i>`
 }
