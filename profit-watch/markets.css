@@ -213,6 +213,10 @@ RESULTS
     color: #00BFA6;
 }
 
+.results__loading .results__heading {
+    display: none;
+}
+
 .results__loading--spinner {
     display: none !important;
 }
@@ -250,6 +254,10 @@ RESULTS
     margin-top: 4px;
 }
 
+.results__loading .result {
+    display: none;
+}
+
 .results__header--symbol,
 .results__header--name,
 .results__header--price,
@@ -264,4 +272,8 @@ RESULTS
     display: flex;
     align-items: center;
     text-align: center;
+}
+
+.no-results {
+    padding-top: 24px;
 }

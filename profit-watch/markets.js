@@ -1,18 +1,38 @@
 const resultsMainEl = document.querySelector(".results__main")
 const resultsHeadingEl = document.querySelector(".results__heading")
+if (localStorage.getItem("searchQuery")){
+    const searchQuery = localStorage.getItem("searchQuery")
+    renderSearchResults(searchQuery)
+    localStorage.clear()
+}
+
+
 
 async function renderSearchResults(searchQuery) {
 
     resultsMainEl.classList += ' results__loading'
-
+    await timeout(1000)
     // const resultsBackend = await fetch(`https://api.stockdata.org/v1/entity/search?search=${searchQuery}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
     const resultsBackend = await fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=cbedd0e4`)
     // console.log(resultsBackend) // prints 1 response
+
     let results = await resultsBackend.json();
+    console.log(results.Response);
+
+    if (results.Response === "False") {
+        resultsMainEl.classList.remove('results__loading')
+        resultsHeadingEl.innerHTML = searchHeadingHTML(searchQuery);
+        resultsMainEl.innerHTML = resultsHeaderHTML() + `<div class="result">
+                                                            <h1 class="no-results">
+                                                                No results Found
+                                                            </h1>
+                                                        </div>`
+        return
+    }
+    
     resultsMainEl.classList.remove('results__loading')
     // reults = results.data 
     results = results.Search;
-    // console.log(results);
 
     if (results.length > 6) {
         results = results.slice(0,6);
@@ -23,8 +43,6 @@ async function renderSearchResults(searchQuery) {
     const results1 = results.slice(0,3);
     // console.log(results1)
     const results2 = results.slice(3,6);
-
-
 
     quote1 = getQuotes(results1);
     console.log(quote1)
@@ -39,7 +57,6 @@ async function renderSearchResults(searchQuery) {
 
     resultsHeadingEl.innerHTML = searchHeadingHTML(searchQuery);
     resultsMainEl.innerHTML = resultsHeaderHTML() + resultsMainHTML;
-    
 }
 
 async function getQuotes(results) {
@@ -82,7 +99,7 @@ function searchHeadingHTML(searchQuery) {
                 Search results
             </h1>
             <h1 class="results__found">
-                Top <span class="green">6</span> results for <span class="green">"${searchQuery}"</span>
+                Top results for <span class="green">"${searchQuery}"</span>
             </h1>`
 }
 
@@ -92,3 +109,7 @@ searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     renderSearchResults(e.target.children[0].value)
 })
+
+function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
