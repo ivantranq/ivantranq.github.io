@@ -46,3 +46,10 @@ searchForm.addEventListener("submit", (e) => {
     localStorage.setItem("searchQuery", e.target.children[0].value);
     window.location.href = `./markets.html`
 })
+
+const toggleMenu = document.getElementsByClassName('hamburger-menu')[0]
+const navBarLinks = document.getElementsByClassName('nav__link--list')[0]
+
+toggleMenu.addEventListener('click', () => {
+    navBarLinks.classList.toggle('active')
+})

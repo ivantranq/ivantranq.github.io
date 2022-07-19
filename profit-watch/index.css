@@ -46,6 +46,7 @@ nav {
 .website-logo {
     display: flex;
     align-items: center;
+    padding-left: 1rem;
 }
 
 .nav__links {
@@ -101,6 +102,18 @@ nav {
 }
 
 .website-logo__text--heading {
+    font-size: 32px;
+}
+
+.hamburger-menu {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    display: none;
+    cursor: pointer;
+}
+
+.fa-bars {
     font-size: 32px;
 }
 
@@ -221,4 +234,78 @@ MARKET SEARCH
 .fa-magnifying-glass-dollar {
     font-size: 20px;
     filter: invert(1);
+}
+
+@media (max-width:758px) {
+    #search-form {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .search__btn {
+        width: 90%;
+        margin: 0;
+        margin-top: 4px;
+    }
+    .fa-magnifying-glass-dollar {
+        text-align: center;
+        padding: 1rem;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    .hamburger-menu {
+        display: block
+    }
+    
+    .nav__link--list {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+    }
+    
+    .nav__link--list.active{
+        display: flex;
+    }
+
+    .ticker {
+        font-size: 16px;
+    }
+    .percent-change, .price {
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 458px) {
+    .display__header {
+        font-size: 24px;
+    }
+
+    .display__description {
+        font-size: 20px;
+    }
+
+    .search__input {
+        width: 90%;
+        height: 40px;
+        border-radius: 8px;
+        font-size: 20px;
+        padding: 8px;
+    }
+
+    .search__btn {
+        height: 40px;
+    }
+
+    .display__img {
+        display: none
+    }
+
+    .fa-magnifying-glass-dollar {
+        padding: 0;
+    }
 }
