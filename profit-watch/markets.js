@@ -13,21 +13,7 @@ async function renderSearchResults(searchQuery) {
     resultsMainEl.classList += ' results__loading'
     resultsMainEl.innerHTML = spinnerHTML();
     await timeout(1000)
-    // let results = await fetch(`https://api.stockdata.org/v1/entity/search?search=${searchQuery}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
-    //                         .then(res => {
-    //                             if(!res.ok) {
-    //                                 return res.text().then(text => {throw new Error('Error')});
-    //                             }
-    //                             else {
-    //                                 return res.json();
-    //                             }
-    //                         })
-    //                         .catch(err => {
-    //                             window.alert('Error: Fetch to API failed')
-    //                             console.log('Caught it!', err);
-    //                         })
-    // console.log(results);
-    let results = await fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=cbedd0e4`)
+    let results = await fetch(`https://api.stockdata.org/v1/entity/search?search=${searchQuery}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
                             .then(res => {
                                 if(!res.ok) {
                                     return res.text().then(text => {throw new Error('Error')});
@@ -40,11 +26,22 @@ async function renderSearchResults(searchQuery) {
                                 window.alert('Error: Fetch to API failed')
                                 console.log('Caught it!', err);
                             })
+    console.log(results);
+    // let results = await fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=cbedd0e4`)
+    //                         .then(res => {
+    //                             if(!res.ok) {
+    //                                 return res.text().then(text => {throw new Error('Error')});
+    //                             }
+    //                             else {
+    //                                 return res.json();
+    //                             }
+    //                         })
+    //                         .catch(err => {
+    //                             window.alert('Error: Fetch to API failed')
+    //                             console.log('Caught it!', err);
+    //                         })
 
-    console.log(results.Response)
-    console.log(results)
-
-    if (results.Response == "False") {
+    if (results.data.length === 0) {
         resultsMainEl.classList.remove('results__loading')
         resultsMainEl.innerHTML = "";
         resultsHeadingEl.innerHTML = searchHeadingHTML(searchQuery);
@@ -62,7 +59,8 @@ async function renderSearchResults(searchQuery) {
     resultsMainEl.classList.remove('results__loading')
     resultsMainEl.innerHTML = "";
 
-    results = results.Search 
+    results = results.data 
+    console.log(results)
     // results = results.data;
     if (results.length > 6) {
         results = results.slice(0,6);
@@ -87,17 +85,17 @@ async function renderSearchResults(searchQuery) {
 
 async function getQuotes(results) {
     const unsolvedQuoteBackend = results.map(elem => 
-        // fetch(`https://api.stockdata.org/v1/data/quote?symbols=${elem.ticker}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
-        fetch(`https://www.omdbapi.com/?t=${elem.Title}&apikey=cbedd0e4`)
+        fetch(`https://api.stockdata.org/v1/data/quote?symbols=${elem.ticker}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
+        // fetch(`https://www.omdbapi.com/?t=${elem.Title}&apikey=cbedd0e4`)
     )
-    // console.log(unsolvedQuoteBackend)
+    console.log(unsolvedQuoteBackend)
 
     const quoteBackend = await Promise.all(unsolvedQuoteBackend)
     // console.log(quoteBackend)
 
     const arrayObjects = quoteBackend.map(elem => elem.json())
     const quote = await Promise.all(arrayObjects)
-    // console.log(quote)
+    console.log(quote)
 
     return quote
 }
@@ -106,8 +104,8 @@ function resultsHeaderHTML() {
     return `<tr class="result results__main--header">
                     <th class="results__header--symbol">Symbol</th>
                     <th class="results__header--name">Name</th>
-                    <th class="results__header--price">Price</th>
-                    <th class="results__header--change">Change %</th>
+                    <th class="results__header--type">Type</th>
+                    <th class="results__header--exchange">Exchange</th>
                 </tr>`
 }
 
@@ -115,8 +113,8 @@ function resultHTML(elem) {
     return `<tr class="result">
                 <td class="result__symbol">${elem.symbol}</td>
                 <td class="result__name">${elem.name}</td>
-                <td class="result__price">${elem.price}</td>
-                <td class="result__chnage">${elem.change}</td>
+                <td class="result__type">${elem.type}</td>
+                <td class="result__exchange">${elem.exchange}</td>
             </tr>`
 }
 

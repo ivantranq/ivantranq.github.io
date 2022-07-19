@@ -267,24 +267,32 @@ RESULTS
     background: #f3f3f3;
 }
 
+.result:hover:nth-child(even) {
+    filter: brightness(0.8);
+}
+
 .results__loading .result {
     display: none;
 }
 
 .results__header--symbol,
 .results__header--name,
-.results__header--price,
-.results__header--change {
+.results__header--type,
+.results__header--exchange {
     text-align: left;
     font-size: 20px;
 }
 
 .result__symbol,
 .result__name,
-.result__price,
-.result__change {
+.result__type,
+.result__exchange {
     text-align: left;
     font-size: 16px;
+}
+
+.result__type {
+    text-transform: capitalize;
 }
 
 .result__symbol {
@@ -318,6 +326,24 @@ tbody tr {
     border-top-right-radius: 8px;
 }
 
+tbody .result {
+    cursor: pointer;
+    transition: all 100ms ease;
+}
+
+tbody .result:hover:nth-child(odd) {
+    background-color: #00BFA6;
+    filter: brightness(0.8);
+}
+
+
+
+
+/* 
+
+RESPONSIVENESS
+
+*/
 
 @media (max-width:758px) {
     nav {
