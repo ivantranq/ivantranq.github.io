@@ -26,7 +26,7 @@ async function renderSearchResults(searchQuery) {
                                 window.alert('Error: Fetch to API failed')
                                 console.log('Caught it!', err);
                             })
-    console.log(results);
+    // console.log(results);
     // let results = await fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=cbedd0e4`)
     //                         .then(res => {
     //                             if(!res.ok) {
@@ -60,7 +60,7 @@ async function renderSearchResults(searchQuery) {
     resultsMainEl.innerHTML = "";
 
     results = results.data 
-    console.log(results)
+    // console.log(results)
     // results = results.data;
     if (results.length > 6) {
         results = results.slice(0,6);
@@ -73,14 +73,21 @@ async function renderSearchResults(searchQuery) {
     // console.log(quote1)
     quote2 = getQuotes(results2);
     const allQuotes = results1.concat(results2)
-    console.log(allQuotes)
+    // console.log(allQuotes)
     const resultsMainHTML = allQuotes.map(elem => resultHTML(elem)).join("");
     resultsHeadingEl.innerHTML = searchHeadingHTML(searchQuery);
+    
     resultsMainEl.innerHTML = createTableHTML();
     const resultsTableHeadEl = document.querySelector(".results__main--table-head")
     const resultsTableBodyEl = document.querySelector(".results__main--table-body")
     resultsTableHeadEl.innerHTML = resultsHeaderHTML() 
     resultsTableBodyEl.innerHTML = resultsMainHTML;
+
+    resultsTableBodyEl.addEventListener('click', (e) => {
+        localStorage.setItem('symbol', e.path[1].innerText.split('\t')[0])
+        window.location.href = './company.html'
+    })
+
 }
 
 async function getQuotes(results) {
@@ -88,14 +95,14 @@ async function getQuotes(results) {
         fetch(`https://api.stockdata.org/v1/data/quote?symbols=${elem.ticker}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
         // fetch(`https://www.omdbapi.com/?t=${elem.Title}&apikey=cbedd0e4`)
     )
-    console.log(unsolvedQuoteBackend)
+    // console.log(unsolvedQuoteBackend)
 
     const quoteBackend = await Promise.all(unsolvedQuoteBackend)
     // console.log(quoteBackend)
 
     const arrayObjects = quoteBackend.map(elem => elem.json())
     const quote = await Promise.all(arrayObjects)
-    console.log(quote)
+    // console.log(quote)
 
     return quote
 }
@@ -155,3 +162,4 @@ const navBarLinks = document.getElementsByClassName('nav__link--list')[0]
 toggleMenu.addEventListener('click', () => {
     navBarLinks.classList.toggle('active')
 })
+
