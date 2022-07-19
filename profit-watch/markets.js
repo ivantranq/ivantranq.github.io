@@ -11,12 +11,21 @@ async function renderSearchResults(searchQuery) {
     resultsMainEl.classList += ' results__loading'
     resultsMainEl.innerHTML = spinnerHTML();
     await timeout(1000)
-    const resultsBackend = await fetch(`https://api.stockdata.org/v1/entity/search?search=${searchQuery}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
-    // const resultsBackend = await fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=cbedd0e4`)
-    // console.log(resultsBackend) // prints 1 response
-    let results = await resultsBackend.json();
-    console.log(results.data);
-    if (results.data.length === 0) {
+    let results = await fetch(`https://api.stockdata.org/v1/entity/search?search=${searchQuery}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
+                            .then(res => {
+                                if(!res.ok) {
+                                    return res.text().then(text => {throw new Error('Error')});
+                                }
+                                else {
+                                    return res.json();
+                                }
+                            })
+                            .catch(err => {
+                                window.alert('Error: Fetch to API failed')
+                                console.log('Caught it!', err);
+                            })
+    // console.log(results);
+    if (!results) {
         resultsMainEl.classList.remove('results__loading')
         resultsHeadingEl.innerHTML = searchHeadingHTML(searchQuery);
         resultsMainEl.innerHTML = resultsHeaderHTML() + `<div class="result">
