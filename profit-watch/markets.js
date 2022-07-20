@@ -12,7 +12,7 @@ if (localStorage.getItem("searchQuery")){
 async function renderSearchResults(searchQuery) {
     resultsMainEl.classList += ' results__loading'
     resultsMainEl.innerHTML = spinnerHTML();
-    await timeout(1000)
+    // await timeout(1000)
     let results = await fetch(`https://api.stockdata.org/v1/entity/search?search=${searchQuery}&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt`)
                             .then(res => {
                                 if(!res.ok) {
