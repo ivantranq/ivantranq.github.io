@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: 1px solid lightgray;
+    border: 0px solid lightgray;
     font-family: 'Lato', sans-serif;
 }
 
@@ -115,4 +115,124 @@ nav {
 
 .fa-bars {
     font-size: 32px;
+}
+
+/* 
+
+COMPANY PROFILE
+
+*/
+
+#company-profile {
+    background: lightgray;
+}
+
+#company-profile__row {
+    display: flex;
+}
+
+.company-description {
+    width: 70%;
+    background-color: #f3f3f3;
+    border-top-left-radius: 8px;
+}
+
+.company-quote {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: #22756A;
+    color: #f3f3f3;
+    border-top-right-radius: 8px;
+}
+
+.company-description h1,
+.company-description h2,
+.company-description p {
+    padding: 0 8px 8px 8px;
+}
+
+.company-description__heading {
+    font-size: 48px;
+}
+
+.company-description h2 {
+    font-size: 18px;
+}
+
+.company-description p {
+    font-size: 12px;
+}
+
+.company-quote .label {
+    font-size: 16px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.company-quote h2 {
+    display: flex;
+    justify-content: space-between;
+    font-size: 28px;
+    padding: 0 8px 8px 8px;
+}
+
+@media (max-width: 758px) {
+    .company-quote h2{
+        flex-direction: column;
+        padding-bottom: 8px;
+    }
+}
+
+@media (max-width: 458px) {
+    #company-profile__row {
+        flex-direction: column-reverse;
+    }
+
+    .company-quote {
+        flex-direction: row;
+        width: 100%;
+        border-top-left-radius: 8px;
+        justify-content: space-between;
+    }
+
+    .company-quote h2 {
+        font-size: 20px;
+        flex-direction: row;
+    }
+
+    .company-quote .label {
+        font-size: 12px;
+    }
+
+    .company-quote__ohlc, .company-quote__other {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .company-quote__ohlc {
+        border-right-width: 1px;
+    }
+
+    .company-description {
+        border-top-left-radius: 0px;
+        width: 100%;
+    }
+
+    .company-description h1, 
+    .company-description h2, 
+    .company-description p {
+        padding-bottom: 4px;
+    }
+
+
+    .company-description h1 {
+        font-size: 32px;
+    }
+
+    .company-description h2 {
+        font-size: 16px;
+    }
 }
