@@ -24,6 +24,7 @@ async function renderDescription(symbol) {
     description = description.data[0]
     
     if ((typeof description === 'undefined') && (typeof quote === 'undefined')) {
+        companyDescriptionEl.classList.remove("description__loading")
         companyDescriptionEl.innerHTML = noInformationHTML();
         return
     }
