@@ -5,13 +5,13 @@ const marketWatchListEl = document.querySelector('.market-watch');
 
 async function renderMarketWatch() {
     const faangBackend1 = await fetch("https://api.stockdata.org/v1/data/quote?symbols=META,AAPL,AMZN,NFLX,GOOG&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt");
-    // const faangBackend2 = await fetch("https://api.stockdata.org/v1/data/quote?symbols=NFLX,GOOG&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt");
+    const faangBackend2 = await fetch("https://api.stockdata.org/v1/data/quote?symbols=NFLX,GOOG&api_token=nWkeCyzlun3yo1ppa6Y2i7SCLrbi1Dp7iHNNjAmt");
     const faangData1 = await faangBackend1.json();
-    // const faangData2 = await faangBackend2.json();
+    const faangData2 = await faangBackend2.json();
     console.log(faangData1.data)
-    // console.log(faangData2.data)
+    console.log(faangData2.data)
 
-    const faangDataComplete = faangData1.data
+    const faangDataComplete = faangData1.data.concat(faangData2.data);
     console.log(faangDataComplete)
 
     let faangHTML = faangDataComplete.map(elem => marketWatchHTML(elem)).join('')
